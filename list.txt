@@ -1,0 +1,15 @@
+BEM301266/
+LINUX-_1.MD
+backup.tar
+cat.txt
+cat2.txt
+cat99.txt
+dog.txt
+list.txt
+mv.txt
+myfile.txt
+osathi.txt
+osathi2.txt
+readme.md
+tt1/
+xdd.txt
