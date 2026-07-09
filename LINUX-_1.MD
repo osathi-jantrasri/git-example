@@ -1322,6 +1322,34 @@ Package manager คือเครื่องมือติดตั้ง/ถ
 ขั้นที่ 5: ค้นหาบรรทัดที่มีคำว่า "ERROR" (ให้ใส่คำนี้ใน log ด้วย)
 ขั้นที่ 6: คัดลอก app.log เป็น app.log.bak
 ขั้นที่ 7: แสดงโครงสร้างโฟลเดอร์ทั้งหมดด้วย find
+
+IT-WRK2406-0073:~# mkdir -p logstore/2026/07/
+
+IT-WRK2406-0073:~/logstore/2026/07# echo "1 line" >> app.log
+IT-WRK2406-0073:~/logstore/2026/07# echo "2 line" >> app.log
+IT-WRK2406-0073:~/logstore/2026/07# echo "3 line ERROR" >> app.log
+IT-WRK2406-0073:~/logstore/2026/07# echo "4 line ERROR" >> app.log
+IT-WRK2406-0073:~/logstore/2026/07# echo "5 line" >> app.log
+IT-WRK2406-0073:~/logstore/2026/07# wc app.log
+        5        12        47 app.log
+
+IT-WRK2406-0073:~/logstore/2026/07# grep "ERROR" app.log
+3 line ERROR
+4 line ERROR
+IT-WRK2406-0073:~/logstore/2026/07# grep -n "ERROR" app.log
+3:3 line ERROR
+4:4 line ERROR
+
+IT-WRK2406-0073:~/logstore/2026/07# cp app.log app.log.bak
+
+IT-WRK2406-0073:~# find ~/logstore/ -type d
+/root/logstore/
+/root/logstore/2026
+/root/logstore/2026/07
+IT-WRK2406-0073:~# find ~/logstore/ -type f
+/root/logstore/2026/07/app.log
+/root/logstore/2026/07/app.log.bak
+
 ```
 
 ---
