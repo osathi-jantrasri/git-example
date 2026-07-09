@@ -1350,6 +1350,46 @@ IT-WRK2406-0073:~# find ~/logstore/ -type f
 /root/logstore/2026/07/app.log
 /root/logstore/2026/07/app.log.bak
 
+
+--AWK--
+
+IT-WRK2406-0073:~# awk '/ERROR/ { print $0 }' ~/logstore/2026/07/app.log
+3 line ERROR
+4 line ERROR
+
+IT-WRK2406-0073:~# awk '{ print $1, $2 }' ~/logstore/2026/07/app.log
+1 line
+2 line
+3 line
+4 line
+5 line
+
+IT-WRK2406-0073:~# awk '$1 >= 3 { print $1, $2 }' ~/logstore/2026/07/app.log
+3 line
+4 line
+5 line
+
+IT-WRK2406-0073:~# awk '$1 >= 3 { print $1, $2 }' ~/logstore/2026/07/app.log > ~/logstore/2026/07/awk.log
+IT-WRK2406-0073:~# cat ~/logstore/2026/07/awk.log
+3 line
+4 line
+5 line
+
+IT-WRK2406-0073:/mnt/host/d/test/git-example# awk '{sum += $1} END {print sum}' ~/logstore/2026/07/app.log
+15
+
+IT-WRK2406-0073:/mnt/host/d/test/git-example# awk 'BEGIN {print "-----START-----", sum=0}{print sum += $1, $0} END {print "---END---", sum}' logstore/2026/07/app.log
+-----START----- 0
+1 1 line
+3 2 line
+6 3 line ERROR
+10 4 line ERROR
+15 5 line
+---END--- 15
+```
+
+```
+/mnt/host/d/test/git-example
 ```
 
 ---
