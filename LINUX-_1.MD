@@ -1386,6 +1386,14 @@ IT-WRK2406-0073:/mnt/host/d/test/git-example# awk 'BEGIN {print "-----START-----
 10 4 line ERROR
 15 5 line
 ---END--- 15
+
+IT-WRK2406-0073:/mnt/host/d/test/git-example# awk 'BEGIN {print "-START-"}{ if ($1>= age) {age = $1, name = $0}} END {print name}' logstore/2026/07/app.log
+-START-
+5 line
+
+(แบบย่อ เริ่มที่ row 2)
+IT-WRK2406-0073:/mnt/host/d/test/git-example# awk 'NR==2 {name = $0, age = $1} NR>2 && $1>age {name = $0, age = $1} END {print age, name}' logstore/2026/07/app.log
+5 5 line
 ```
 
 ```
