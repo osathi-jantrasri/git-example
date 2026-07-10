@@ -1369,6 +1369,7 @@ IT-WRK2406-0073:~# awk '$1 >= 3 { print $1, $2 }' ~/logstore/2026/07/app.log
 4 line
 5 line
 
+(เซฟใส่ไฟลล์)
 IT-WRK2406-0073:~# awk '$1 >= 3 { print $1, $2 }' ~/logstore/2026/07/app.log > ~/logstore/2026/07/awk.log
 IT-WRK2406-0073:~# cat ~/logstore/2026/07/awk.log
 3 line
@@ -1394,10 +1395,20 @@ IT-WRK2406-0073:/mnt/host/d/test/git-example# awk 'BEGIN {print "-START-"}{ if (
 (แบบย่อ เริ่มที่ row 2)
 IT-WRK2406-0073:/mnt/host/d/test/git-example# awk 'NR==2 {name = $0, age = $1} NR>2 && $1>age {name = $0, age = $1} END {print age, name}' logstore/2026/07/app.log
 5 5 line
+
+(หาจาก grep ก่อนแล้ว format)
+IT-WRK2406-0073:/mnt/host/d/test/git-example# grep "ERROR" logstore/2026/07/app.log | awk '{printf "Line :%s Message :%s \n", $1, $0}'
+Line :3 Message :3 line ERROR
+Line :4 Message :4 line ERROR
 ```
 
 ```
 /mnt/host/d/test/git-example
+```
+
+```
+vi command
+https://www.atmos.albany.edu/daes/atmclasses/atm350/vi_cheat_sheet.pdf
 ```
 
 ---
